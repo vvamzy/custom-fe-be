@@ -1,6 +1,7 @@
 FROM python
 WORKDIR /app
 COPY . .
+WORKDIR backend/
 RUN pip install flask
 RUN pip install flask_cors
 EXPOSE 5000
