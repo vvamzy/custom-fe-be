@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {     
-    DOCKERHUB_CREDENTIALS= credentials('docker')     
-    } 
     stages {
         stage('Scan fs') {
             steps {
@@ -30,10 +27,11 @@ pipeline {
             }
         }
         stage('Login to Docker Hub') {      	
-            steps{                       	
-	            sh 'echo $DOCKERHUB_CREDENTIALS | sudo docker login -u vvamzy --password-stdin'                		
-	            echo 'Login Completed'      
-            }           
+        steps{
+            withCredentials([string(credentialsId: 'vvamzy', variable: 'dockerpwd')]) {
+            sh "docker login -u vvamzy -p ${dockerpwd}"
+            }
         }               
     }
+}
 }
