@@ -33,8 +33,7 @@ pipeline {
             steps{                       	
 	            sh 'echo $DOCKERHUB_CREDENTIALS | sudo docker login -u vvamzy --password-stdin'                		
 	            echo 'Login Completed'      
-        }           
-    }               
-        }
+            }           
+        }               
     }
 }
