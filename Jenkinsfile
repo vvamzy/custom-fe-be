@@ -19,12 +19,12 @@ pipeline {
         }
         stage('Scan fe Image') {
             steps {
-                sh 'trivy image frontend:latest'
+                sh 'sudo trivy image frontend:latest'
             }
         }
         stage('Scan be Image') {
             steps {
-                sh 'trivy image backend:latest'
+                sh 'sudo trivy image backend:latest'
             }
         }
     }
