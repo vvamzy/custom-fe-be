@@ -30,8 +30,8 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'vvamzy', variable: 'dockerpwd')]) {
                 sh "docker login -u vvamzy -p ${dockerpwd}"
-                sh "docker push vvamzy/backend"
-                sh "docker push vvamzy/frontend"
+                sh "sudo docker push vvamzy/backend"
+                sh "sudo docker push vvamzy/frontend"
             }
         }               
         }
