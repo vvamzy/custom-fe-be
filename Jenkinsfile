@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Build Frontend Image') {
             steps {
-                sh 'docker build . -t frontend -f frontend/Dockerfile-fe'
+                sh 'sudo docker build . -t frontend -f frontend/Dockerfile-fe'
             }
         }
         stage('Build Backend Image') {
             steps {
-                sh 'docker build . -t backend -f backend/Dockerfile-backend'
+                sh 'sudo docker build . -t backend -f backend/Dockerfile-backend'
             }
         }
         stage('Scan fe Image') {
