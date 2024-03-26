@@ -18,12 +18,12 @@ pipeline {
         }
         stage('Scan fe Image') {
             steps {
-                sh 'sudo trivy image frontend:latest'
+                sh 'sudo trivy image vvamzy/frontend:latest'
             }
         }
         stage('Scan be Image') {
             steps {
-                sh 'sudo trivy image backend:latest'
+                sh 'sudo trivy image vvamzy/backend:latest'
             }
         }
         stage('Login to Docker Hub') {      	
@@ -37,12 +37,12 @@ pipeline {
         }
         stage('Run Test Containers') {      	
             steps{
-                sh "docker run -d --name fe-test -p 3000:3000 vvamzy/frontend"
-                sh "docker run -d --name be-test vvamzy/backend"
+                sh "sudo docker run -d --name fe-test -p 3000:3000 vvamzy/frontend"
+                sh "sudo docker run -d --name be-test vvamzy/backend"
                 sleep 60
                 echo "terminating the test containers"
-                sh "docker rm -f fe-test"
-                sh "docker rm -f be-test"
+                sh "sudo docker rm -f fe-test"
+                sh "sudo docker rm -f be-test"
         }               
         }
     }
